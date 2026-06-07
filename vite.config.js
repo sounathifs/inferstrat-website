@@ -1,7 +1,9 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-export default defineConfig({
+// Production (build) is served from the custom domain root (www.inferstrat.com),
+// so base is "/". Local dev (serve) runs under "/inferstrat-website/".
+export default defineConfig(({ command }) => ({
   plugins: [react()],
-  base: "/"
-});
+  base: command === "build" ? "/" : "/inferstrat-website/",
+}));
