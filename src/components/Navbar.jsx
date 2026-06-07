@@ -1,88 +1,97 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { Sun, Moon } from "lucide-react";
+import BrandLogo from "./BrandLogo";
+import { useTheme } from "../ThemeContext";
+
+const LINKS = [
+  { id: "approach", label: "Approach" },
+  { id: "philosophy", label: "Method" },
+  { id: "capabilities", label: "Capabilities" },
+  { id: "build", label: "Build" },
+];
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const location = useLocation();
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const { theme, toggle } = useTheme();
 
-  // Helper: navigate to a section even if you're not on "/"
-  const handleNavClick = (sectionId) => {
-    if (location.pathname !== "/") {
-      // Navigate back to home and then scroll after a short delay
-      window.location.hash = "#/" + sectionId; 
-      window.location.href = "/#/"; // for HashRouter (GitHub Pages)
-      setTimeout(() => {
-        const section = document.getElementById(sectionId);
-        if (section) section.scrollIntoView({ behavior: "smooth" });
-      }, 400);
-    } else {
-      const section = document.getElementById(sectionId);
-      if (section) section.scrollIntoView({ behavior: "smooth" });
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Smooth-scroll to a section (anchor hrefs are reserved by HashRouter).
+  const goTo = (e, id) => {
+    e.preventDefault();
+    setOpen(false);
+    if (id === "top") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
     }
-    setMenuOpen(false);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-white/50 backdrop-blur-xl shadow-lg z-50">
-      <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
-        {/* Brand */}
-        <h1 className="text-xl font-extrabold text-blue-700 tracking-wide">
-          INFERSTRAT
-        </h1>
-
-        {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-6">
-          <button
-            onClick={() => handleNavClick("home")}
-            className="text-gray-800 hover:text-blue-500 transition-colors"
-          >
-            Home
-          </button>
-          <button
-            onClick={() => handleNavClick("services")}
-            className="text-gray-800 hover:text-blue-500 transition-colors"
-          >
-            Services
-          </button>
-          <button
-            onClick={() => handleNavClick("about")}
-            className="text-gray-800 hover:text-blue-500 transition-colors"
-          >
-            About
-          </button>
-          <button
-            onClick={() => handleNavClick("contact")}
-            className="text-gray-800 hover:text-blue-500 transition-colors"
-          >
-            Contact
-          </button>
-        </div>
-
-        {/* Mobile Menu Toggle */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-gray-800 hover:text-blue-500 focus:outline-none"
+    <header className={`site-header${scrolled ? " scrolled" : ""}`} id="hdr">
+      <div className="wrap nav">
+        <a
+          className="brand"
+          href="#top"
+          aria-label="Inferstrat home"
+          onClick={(e) => goTo(e, "top")}
         >
-          {menuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </div>
+          <BrandLogo />
+          <span className="name">
+            Infer<span className="accent">Strat</span>
+          </span>
+        </a>
 
-      {/* Mobile Dropdown */}
-      {menuOpen && (
-        <div className="md:hidden bg-white/90 backdrop-blur-lg shadow-lg px-6 py-4 space-y-4">
-          {["home", "services", "about", "contact"].map((id) => (
-            <button
-              key={id}
-              onClick={() => handleNavClick(id)}
-              className="block text-gray-800 hover:text-blue-500 transition-colors w-full text-left"
+        <div className="nav-right">
+          <nav className={`nav-links${open ? " open" : ""}`} id="navlinks">
+            {LINKS.map((l) => (
+              <a
+                key={l.id}
+                className="lnk"
+                href={`#${l.id}`}
+                onClick={(e) => goTo(e, l.id)}
+              >
+                {l.label}
+              </a>
+            ))}
+            <a
+              className="cta"
+              href="#contact"
+              onClick={(e) => goTo(e, "contact")}
             >
-              {id.charAt(0).toUpperCase() + id.slice(1)}
-            </button>
-          ))}
+              Get in touch
+            </a>
+          </nav>
 
+          <button
+            className="theme-toggle"
+            type="button"
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+            title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+            onClick={toggle}
+          >
+            {theme === "dark" ? <Sun /> : <Moon />}
+          </button>
+
+          <button
+            className={`nav-toggle${open ? " open" : ""}`}
+            id="navtoggle"
+            aria-label="Menu"
+            aria-expanded={open}
+            onClick={() => setOpen((o) => !o)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
-      )}
-    </nav>
+      </div>
+    </header>
   );
 }

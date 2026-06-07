@@ -2,10 +2,7 @@ import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import Services from "./pages/Services";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
+import Landing from "./pages/Landing";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 
@@ -18,32 +15,19 @@ export default function App() {
       {/* Hide Navbar on policy pages */}
       {!isPolicyPage && <Navbar />}
 
-      <main className="flex-grow">
+      <div className="flex-grow">
         <Routes>
           {/* Main single-page layout */}
-          <Route
-            path="/"
-            element={
-              <>
-                <Home />
-                <Services />
-                <About />
-                <Contact />
-              </>
-            }
-          />
+          <Route path="/" element={<Landing />} />
           {/* Terms & Conditions */}
           <Route
             path="/policy/terms-and-conditions"
             element={<TermsAndConditions />}
           />
           {/* Privacy Policy */}
-          <Route
-            path="/policy/privacy-policy"
-            element={<PrivacyPolicy />}
-          />
+          <Route path="/policy/privacy-policy" element={<PrivacyPolicy />} />
         </Routes>
-      </main>
+      </div>
 
       {/* Hide Footer on policy pages */}
       {!isPolicyPage && <Footer />}

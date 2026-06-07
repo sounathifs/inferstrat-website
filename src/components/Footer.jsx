@@ -1,37 +1,60 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom"; // 👈 import this
+import React from "react";
+import { Link } from "react-router-dom";
+import BrandLogo from "./BrandLogo";
 
 export default function Footer() {
-  const [showModal, setShowModal] = useState(false);
+  const goTo = (e, id) => {
+    e.preventDefault();
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <>
-      <footer className="bg-gradient-to-r from-gray-800 via-gray-900 to-black text-center text-white py-8">
-        {/* Logo */}
-        <div className="mb-4">
-          <img
-            src="./images/logo.png" 
-            alt="Inferstrat"
-            className="mx-auto h-10 w-auto object-contain"
-          />
+    <footer className="site-footer">
+      <div className="wrap">
+        <div className="foot-grid">
+          <div className="foot-brand">
+            <BrandLogo />
+            <div className="name">
+              Infer<span className="accent">Strat</span>
+            </div>
+            <p>
+              Bringing your vision to life — making organisations more data
+              driven, generating insights from less traveled paths of Data
+              Analytics and Social Intelligence.
+            </p>
+          </div>
+          <div className="foot-col">
+            <h4>Office</h4>
+            <span>Inferstrat Private Limited</span>
+            <span>620 Purbachal Road, Golden Park,</span>
+            <span>Haltu, Kolkata, West Bengal,</span>
+            <span>India — 700078</span>
+          </div>
+          <div className="foot-col">
+            <h4>Contact</h4>
+            <a href="mailto:admin@inferstrat.com">admin@inferstrat.com</a>
+            <a href="mailto:contactus@inferstrat.com">
+              contactus@inferstrat.com
+            </a>
+            <a href="#approach" onClick={(e) => goTo(e, "approach")}>
+              Approach
+            </a>
+            <a href="#capabilities" onClick={(e) => goTo(e, "capabilities")}>
+              Capabilities
+            </a>
+          </div>
         </div>
-      <Link
-        to="/policy/terms-and-conditions"
-        className="text-blue-400 hover:text-blue-300 underline"
-      >
-        Terms & Conditions
-      </Link>
-
-      <Link
-        to="/policy/privacy-policy"
-        className="text-blue-400 hover:text-blue-300 underline ml-4"
-      >
-        Privacy Policy
-      </Link>
-
-        <p className="text-sm opacity-80">
-          © {new Date().getFullYear()} InferStrat — Market Research & Consulting
-        </p>
-      </footer>
-    </>
+        <div className="foot-bot">
+          <span>Copyright © 2025 Inferstrat.</span>
+          <span style={{ display: "flex", gap: "24px", flexWrap: "wrap" }}>
+            <Link to="/policy/terms-and-conditions">Terms &amp; Conditions</Link>
+            <Link to="/policy/privacy-policy">Privacy Policy</Link>
+          </span>
+          <span>
+            Generating insights from the less traveled paths of data analytics.
+          </span>
+        </div>
+      </div>
+    </footer>
   );
 }
