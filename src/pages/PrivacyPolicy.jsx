@@ -1,20 +1,9 @@
+import PolicyModal from "../components/PolicyModal";
+
 export default function PrivacyPolicy() {
   return (
-    <section
-      id="privacy-policy"
-      className="py-10 bg-gradient-to-b from-white via-blue-50 to-white"
-    >
-      <div className="text-center mb-12">
-        <h1 className="text-3xl font-bold text-gray-800">
-          Privacy Policy
-        </h1>
-        <p className="text-gray-500 mt-2">
-          Effective Date: January 1, 2025
-        </p>
-      </div>
-
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="text-gray-600 max-h-[60vh] overflow-y-auto pr-2">
+    <PolicyModal title="Privacy Policy" subtitle="Effective Date: January 1, 2025">
+        <div className="text-gray-600">
 
           {/* 1. Introduction */}
           <section className="mb-6">
@@ -155,7 +144,6 @@ export default function PrivacyPolicy() {
             legal advice. For specific guidance, consult a qualified attorney.
           </p>
         </div>
-      </div>
-    </section>
+    </PolicyModal>
   );
 }

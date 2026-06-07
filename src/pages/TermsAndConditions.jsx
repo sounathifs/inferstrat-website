@@ -1,9 +1,9 @@
+import PolicyModal from "../components/PolicyModal";
+
 export default function TermsAndConditions() {
   return (
-    <section id="terms&conditions" className="py-10 bg-gradient-to-b from-white via-blue-50 to-white">
-      <div className="text-center mb-12"></div>
-      <div className="max-w-6xl mx-auto px-6">
-           <div className="text-gray-600 max-h-[60vh] overflow-y-auto pr-2">
+    <PolicyModal title="Terms & Conditions" subtitle="Last updated: January 1, 2025">
+           <div className="text-gray-600">
               <section className="mb-6">
                 <h2 className="text-xl font-semibold mb-2">1. Introduction</h2>
                 <p>
@@ -131,7 +131,6 @@ export default function TermsAndConditions() {
                 qualified attorney.
               </p>
             </div>
-        </div>
-    </section>
+    </PolicyModal>
   );
 }
