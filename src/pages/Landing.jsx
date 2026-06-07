@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import HeroNetwork from "../components/HeroNetwork";
 import AppViz from "../components/AppViz";
 
@@ -40,17 +40,43 @@ const CAPABILITIES = [
   "Campaign Analysis",
 ];
 
+// `icon` = Simple Icons slug (loaded from cdn.simpleicons.org at runtime).
+// `color` = brand hex (no #), used for the icon tint and the text fallback.
+// Brands without a published icon — or whose icon fails to load — render the
+// name as a coloured wordmark instead.
 const CLIENTS = [
-  { slug: "google", name: "Google" },
-  { slug: "timesofindia", name: "Times of India" },
-  { slug: "emami", name: "Emami" },
-  { slug: "statsit", name: "Statsit" },
-  { slug: "cocacola", name: "Coca-Cola" },
-  { slug: "nomura", name: "Nomura" },
-  { slug: "mitsubishi", name: "Mitsubishi" },
-  { slug: "bca", name: "BCA" },
-  { slug: "starbucks", name: "Starbucks" },
+  { name: "Google", icon: "google", color: "4285F4" },
+  { name: "Times of India", icon: null, color: "D31317" },
+  { name: "Emami", icon: null, color: "ED1C24" },
+  { name: "Statsit", icon: null, color: "4C86E8" },
+  { name: "Coca-Cola", icon: "cocacola", color: "F40009" },
+  { name: "Nomura", icon: null, color: "B01116" },
+  { name: "Mitsubishi", icon: "mitsubishi", color: "E60012" },
+  { name: "BCA", icon: null, color: "005FAF" },
+  { name: "Starbucks", icon: "starbucks", color: "00704A" },
 ];
+
+// Tries the real brand icon; falls back to a coloured text wordmark if the
+// brand has no icon slug or the remote icon fails to load.
+function ClientLogo({ client }) {
+  const [failed, setFailed] = useState(false);
+  if (client.icon && !failed) {
+    return (
+      <img
+        className="client-logo"
+        src={`https://cdn.simpleicons.org/${client.icon}/${client.color}`}
+        alt={client.name}
+        loading="lazy"
+        onError={() => setFailed(true)}
+      />
+    );
+  }
+  return (
+    <span className="client-wordmark" style={{ color: `#${client.color}` }}>
+      {client.name}
+    </span>
+  );
+}
 
 export default function Landing() {
   // Reveal-on-scroll: add `.in` to `.reveal` elements as they enter view.
@@ -268,12 +294,8 @@ export default function Landing() {
             </div>
             <div className="clients-grid reveal" data-d="1">
               {CLIENTS.map((c) => (
-                <div className="client" key={c.slug} title={c.name}>
-                  <img
-                    src={`./images/clients/${c.slug}.svg`}
-                    alt={c.name}
-                    loading="lazy"
-                  />
+                <div className="client" key={c.name} title={c.name}>
+                  <ClientLogo client={c} />
                 </div>
               ))}
             </div>

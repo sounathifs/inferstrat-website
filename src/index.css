@@ -604,18 +604,29 @@ section {
 .client:hover {
   background: var(--ink-2);
 }
-.client img {
-  max-width: 132px;
-  max-height: 38px;
-  width: 100%;
+/* greyscale by default (theme-aware), full colour on hover */
+.client-logo {
+  max-width: 120px;
+  max-height: 40px;
+  width: auto;
   height: auto;
   object-fit: contain;
-  /* greyscale by default (theme-aware), full colour on hover */
   filter: var(--logo-filter);
   transition: filter 0.4s var(--ease), transform 0.4s var(--ease);
 }
-.client:hover img {
-  filter: grayscale(0) opacity(1);
+.client-wordmark {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: clamp(15px, 1.9vw, 20px);
+  letter-spacing: -0.01em;
+  text-align: center;
+  white-space: nowrap;
+  filter: var(--logo-filter);
+  transition: filter 0.4s var(--ease), transform 0.4s var(--ease);
+}
+.client:hover .client-logo,
+.client:hover .client-wordmark {
+  filter: none;
   transform: scale(1.05);
 }
 
