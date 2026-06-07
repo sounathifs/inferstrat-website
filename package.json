@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "description": "Inference Driven Strategy",
-  "homepage": "https://apesconsole.github.io/inferstrat-website",
+  "homepage": "https://sounathifs.github.io/inferstrat-website",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
