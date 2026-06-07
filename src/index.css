@@ -22,6 +22,8 @@
   /* canvas "neutral" particle/bar colors (R,G,B triplets read in JS) */
   --viz-neutral: 180, 196, 180;
   --viz-bar: 120, 140, 124;
+  /* client logos: greyscale default (brightened so they read on dark ink) */
+  --logo-filter: grayscale(1) brightness(2.1) opacity(0.7);
 }
 
 /* ---------- light theme ---------- */
@@ -35,6 +37,8 @@
   --faint: oklch(0.54 0.014 150);
   --viz-neutral: 92, 110, 98;
   --viz-bar: 96, 116, 104;
+  /* on light paper, plain greyscale reads fine — no brightening */
+  --logo-filter: grayscale(1) opacity(0.55);
 }
 :root[data-theme="light"] .bg-grid {
   background-image: linear-gradient(
@@ -608,8 +612,8 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 132px;
-  padding: 28px 32px;
+  min-height: 96px;
+  padding: 18px 24px;
   border-right: 1px solid var(--ink-3);
   border-bottom: 1px solid var(--ink-3);
   transition: background 0.35s var(--ease);
@@ -618,13 +622,13 @@ section {
   background: var(--ink-2);
 }
 .client img {
-  max-width: 168px;
-  max-height: 52px;
+  max-width: 132px;
+  max-height: 38px;
   width: 100%;
   height: auto;
   object-fit: contain;
-  /* greyscale + dimmed by default; full colour on hover */
-  filter: grayscale(1) opacity(0.55);
+  /* greyscale by default (theme-aware), full colour on hover */
+  filter: var(--logo-filter);
   transition: filter 0.4s var(--ease), transform 0.4s var(--ease);
 }
 .client:hover img {
@@ -1072,8 +1076,8 @@ section {
     grid-template-columns: repeat(2, 1fr);
   }
   .client {
-    min-height: 108px;
-    padding: 22px;
+    min-height: 84px;
+    padding: 16px;
   }
   .band {
     padding: 84px 0;
