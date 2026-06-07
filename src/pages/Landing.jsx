@@ -113,9 +113,6 @@ export default function Landing() {
               />
               <span className="cnr tl"></span>
               <span className="cnr br"></span>
-              <figcaption className="art-lbl">
-                FIG_01 · Market Research
-              </figcaption>
             </figure>
           </div>
           <div className="scrollcue" aria-hidden="true">
@@ -233,7 +230,6 @@ export default function Landing() {
                 <span className="cnr tl"></span>
                 <span className="cnr br"></span>
                 <AppViz />
-                <span className="lbl">FIG_02 — CUSTOM APPLICATION LAYER</span>
               </div>
               <div className="reveal" data-d="1">
                 <p className="kicker">Engineering</p>
