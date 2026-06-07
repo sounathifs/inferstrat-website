@@ -8,6 +8,7 @@ const LINKS = [
   { id: "philosophy", label: "Method" },
   { id: "capabilities", label: "Capabilities" },
   { id: "build", label: "Build" },
+  { id: "clients", label: "Clients" },
 ];
 
 export default function Navbar() {

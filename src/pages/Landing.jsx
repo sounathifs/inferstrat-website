@@ -40,6 +40,18 @@ const CAPABILITIES = [
   "Campaign Analysis",
 ];
 
+const CLIENTS = [
+  { slug: "google", name: "Google" },
+  { slug: "timesofindia", name: "Times of India" },
+  { slug: "emami", name: "Emami" },
+  { slug: "statsit", name: "Statsit" },
+  { slug: "cocacola", name: "Coca-Cola" },
+  { slug: "nomura", name: "Nomura" },
+  { slug: "mitsubishi", name: "Mitsubishi" },
+  { slug: "bca", name: "BCA" },
+  { slug: "starbucks", name: "Starbucks" },
+];
+
 export default function Landing() {
   // Reveal-on-scroll: add `.in` to `.reveal` elements as they enter view.
   useEffect(() => {
@@ -240,6 +252,34 @@ export default function Landing() {
                   <span className="pill">Innovation</span>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============ CLIENTS ============ */}
+        <section className="band" id="clients">
+          <div className="wrap">
+            <div className="sec-head">
+              <h2 className="reveal">
+                Trusted by teams
+                <br />
+                that move on signal.
+              </h2>
+              <p className="reveal" data-d="1">
+                A selection of the brands and organisations we've partnered with
+                across analytics, social intelligence and custom engineering.
+              </p>
+            </div>
+            <div className="clients-grid reveal" data-d="1">
+              {CLIENTS.map((c) => (
+                <div className="client" key={c.slug} title={c.name}>
+                  <img
+                    src={`./images/clients/${c.slug}.svg`}
+                    alt={c.name}
+                    loading="lazy"
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </section>
