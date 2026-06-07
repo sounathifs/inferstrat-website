@@ -1,0 +1,33 @@
+{
+  "name": "inferstrat-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Inference Driven Strategy",
+  "homepage": "https://apesconsole.github.io/inferstrat-website",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "framer-motion": "^10.12.16",
+    "lucide-react": "^0.544.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.10.1",
+    "react-router-dom": "^7.9.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.0",
+    "autoprefixer": "^10.4.14",
+    "gh-pages": "^5.0.0",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.4.7",
+    "vite": "^5.1.0"
+  },
+  "overrides": {
+    "picomatch": "^4.0.4"
+  }
+}
