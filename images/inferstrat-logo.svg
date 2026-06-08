@@ -1,0 +1,10 @@
+<svg width="720" height="240" viewBox="0 0 720 240" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="InferStrat logo">
+  <rect width="720" height="240" fill="#0C100D"></rect>
+  <g transform="translate(120 120)">
+    <circle cx="0" cy="0" r="50" stroke="#6E7A70" stroke-width="4"></circle>
+    <circle cx="0" cy="0" r="32" stroke="#4C86E8" stroke-width="4.6" stroke-dasharray="28 15" transform="rotate(-20)"></circle>
+    <circle cx="0" cy="0" r="9" fill="#4C86E8"></circle>
+  </g>
+  <text x="232" y="138" font-family="&#39;Space Grotesk&#39;, sans-serif" font-size="64" font-weight="700" letter-spacing="-2" fill="#E8EFE6">Infer<tspan fill="#4C86E8">Strat</tspan></text>
+  <text x="234" y="170" font-family="&#39;IBM Plex Mono&#39;, monospace" font-size="15" letter-spacing="7" fill="#7E8C81">DATA · SOCIAL · INTELLIGENCE</text>
+</svg>
